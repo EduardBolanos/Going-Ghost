@@ -30,14 +30,5 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        wall = true;
-        print("ye");   
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        wall = false;
-    }
+    
 }
