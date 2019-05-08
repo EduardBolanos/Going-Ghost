@@ -15,10 +15,12 @@ public class MazeGenerator : MonoBehaviour
 
     public MazeSprite mazeSpritePrefab;
 
+    public static MazeGenerator instance;
+
     System.Random mazeRG;
 
     Maze maze;
-    public static MazeGenerator instance;
+
 
     void Awake()
     {
