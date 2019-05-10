@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Maze
 {
+
     int width;
     int height;
 
@@ -24,6 +24,20 @@ public class Maze
         this.width = width;
         this.height = height;
 
+        this.startX = 1;
+        this.startY = 1;
+
+        this.rg = rg;
+    }
+
+    public Maze(int width, int height, int startX, int startY, System.Random rg)
+    {
+        this.width = width;
+        this.height = height;
+
+        this.startX = startX;
+        this.startY = startY;
+
         this.rg = rg;
     }
 
@@ -37,6 +51,37 @@ public class Maze
         grid[startX, startY] = true;
 
         MazeDigger(startX, startY);
+    }
+
+    public Vector3 GetGoalPosition()
+    {
+        int radius = 2;
+
+        int endX = width - startX;
+        int endY = height - startY;
+
+        for (int x = endX - radius; x <= endX + radius; x++)
+        {
+            for (int y = endY - radius; y <= endY + radius; y++)
+            {
+                if (GetCell(x, y))
+                {
+                    return new Vector3(x, y);
+                }
+            }
+        }
+
+        return Vector3.one * 1000;
+    }
+
+    public bool GetCell(int x, int y)
+    {
+        if (x >= width || x < 0 || y >= height || y <= 0)
+        {
+            return false;
+        }
+
+        return grid[x, y];
     }
 
     void MazeDigger(int x, int y)
@@ -104,6 +149,5 @@ public class Maze
             }
         }
     }
+
 }
-
-
